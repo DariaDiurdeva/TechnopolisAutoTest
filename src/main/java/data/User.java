@@ -1,3 +1,5 @@
+package data;
+
 public class User {
     String name;
     private String login;
