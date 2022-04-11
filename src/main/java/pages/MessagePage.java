@@ -1,24 +1,45 @@
 package pages;
 import static com.codeborne.selenide.Selenide.$;
 
-import data.Message;
+import com.codeborne.selenide.Condition;
+import pages.Wrappers.MessageWrapper;
 import org.openqa.selenium.By;
 
-public class MessagePage {
+public class MessagePage extends BasePage{
+
+    private final String lineForSearch = "//input[@name='chat-search']";
+    private final String lineInputMessage = "//msg-input";
+    private final String sendButton = "//*[@data-l=\"t,sendButton\"]//*[@icon=\"send\"]";
+    private final String lastReceivedMessage ="//*[@class=\"group\"][last()]//msg-message[not(@mine)][last()]";
+    private final String lastMyMessage = "//*[@class=\"group\"][last()]//msg-message[@mine][last()]";
+
+    public MessagePage(){
+        isLoaded();
+    }
 
     public MessagePage openDialog(Long id){
-        $(By.xpath("//*[@data-item-id='" + id + "']")).click();
+        $(By.xpath("//msg-chats-list-item//*[@id='" + id + "']")).click();
         return this;
     }
 
-    public MessagePage sendMessage(Message message){
-        $(By.xpath("//*[@data-l=\"t,msgInput\"]")).setValue(message.getText());
-        $(By.xpath("//*[@data-l=\"t,sendButton\"]//*[@icon=\"send\"]")).click();
+    public MessagePage sendMessage(String text){
+        $(By.xpath(lineInputMessage)).setValue(text);
+        $(By.xpath(sendButton)).click();
         return this;
     }
 
-    public boolean checkLastMessage(Message message){
-        String textMessage = $(By.xpath("//*[@class=\"group\"][last()]//msg-message[not(@mine)][last()]//div/msg-parsed-text")).getText();
-        return textMessage.equals(message.getText());
+    public MessageWrapper getLastReceivedMessage(){
+        MessageWrapper massege = new MessageWrapper($(By.xpath(lastReceivedMessage)));
+        return massege;
+    }
+
+    public MessageWrapper getLastMyMessage(){
+        MessageWrapper massege = new MessageWrapper($(By.xpath(lastMyMessage)));
+        return massege;
+    }
+
+    @Override
+    public void isLoaded() {
+        $(By.xpath(lineForSearch)).shouldBe(Condition.visible.because("Search fields not displayed"));
     }
 }

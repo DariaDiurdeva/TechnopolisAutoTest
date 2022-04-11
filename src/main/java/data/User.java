@@ -1,14 +1,29 @@
 package data;
 
 public class User {
-    String name;
+    private String name;
     private String login;
     private String password;
+    private Long id;
 
-    public User(String name, String login,String password){
+
+    public User(){
+
+    }
+
+    public User(String name, String login,String password,Long id){
         this.name = name;
         this.login = login;
         this.password = password;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,6 +48,37 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static class UserBuilder{
+        private User user;
+
+        public UserBuilder(){
+            this.user = new User();
+        }
+
+        public UserBuilder setLogin(String login){
+            user.login = login;
+            return this;
+        }
+        public UserBuilder setPassword(String password){
+            user.password =password;
+            return  this;
+        }
+
+        public UserBuilder setFullName(String name){
+            user.name = name;
+            return this;
+        }
+
+        public UserBuilder setId(Long id){
+            user.id = id;
+            return this;
+        }
+
+        public User build(){
+            return user;
+        }
     }
 }
 
