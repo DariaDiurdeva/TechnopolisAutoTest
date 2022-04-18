@@ -4,12 +4,13 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.Wrappers.ToolBarWrapper;
-
 import static com.codeborne.selenide.Selenide.$;
+
 
 public class MainPage extends BasePage{
 
-    private final String xPathFullName = "//*[@id=\"hook_Block_Navigation\"]/div/div/div[1]/a/div";
+    private final String xPathFullName = "//*[@id=\"hook_Block_Navigation\"]//*[@class = \"tico ellip\"]";
+    private final String xPathNoteButton = "//*[contains(@data-l,'t,userStatuses')]";
     private ToolBarWrapper toolbar = new ToolBarWrapper($(By.xpath("//div[contains(@data-module,'ToolbarManager')]")));
 
     public MainPage(){
@@ -33,6 +34,12 @@ public class MainPage extends BasePage{
 
     @Override
     public void isLoaded() {
-       $(By.xpath(xPathFullName)).shouldBe(Condition.visible.because("Fullname not displayed"));
+       $(By.xpath(xPathFullName)).shouldBe(Condition.visible.because("Full name not displayed"));
     }
+
+    public NotesPage openNotesPage(){
+        $(By.xpath(xPathNoteButton)).click();
+        return new NotesPage();
+    }
+
 }

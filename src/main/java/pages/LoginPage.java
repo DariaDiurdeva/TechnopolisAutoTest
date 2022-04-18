@@ -30,4 +30,8 @@ public class LoginPage extends BasePage{
         $(By.name(xPathPassword)).shouldBe(Condition.visible.because("Password field not loaded"));
         $(By.xpath(xPathButton)).shouldBe(Condition.visible.because("Not loaded button log in"));
     }
+
+    public boolean intoLoginPage(){
+        return  $(By.name(xPathLogin)).isDisplayed();
+    }
 }

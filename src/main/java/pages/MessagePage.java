@@ -29,13 +29,13 @@ public class MessagePage extends BasePage{
     }
 
     public MessageWrapper getLastReceivedMessage(){
-        MessageWrapper massege = new MessageWrapper($(By.xpath(lastReceivedMessage)));
-        return massege;
+        MessageWrapper message = new MessageWrapper($(By.xpath(lastReceivedMessage)));
+        return message;
     }
 
     public MessageWrapper getLastMyMessage(){
-        MessageWrapper massege = new MessageWrapper($(By.xpath(lastMyMessage)));
-        return massege;
+        MessageWrapper message = new MessageWrapper($(By.xpath(lastMyMessage)));
+        return message;
     }
 
     @Override
