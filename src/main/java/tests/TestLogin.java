@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestLogin  {
 
     private  User user;
-    static LoginPage loginPage;
-    static MainPage mainPage;
+    private LoginPage loginPage;
+    private MainPage mainPage;
 
     @BeforeAll
     void init(){

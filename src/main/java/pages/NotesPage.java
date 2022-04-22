@@ -33,7 +33,7 @@ public class NotesPage extends BasePage {
 
     public NotesPage sendNote(Note note){
         $(By.xpath(xPathFieldForTextNote)).click();
-        note.sendNote();
+        note.createNote();
         return this;
     }
 }

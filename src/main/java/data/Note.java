@@ -11,11 +11,11 @@ public class Note {
 
     private String head;
     private String text;
-    private String xPathOptionButton = "//*[@class = \"posting_itx_ac_menu\"]";
-    private String xPathAddHeadButton = "//*[@data-action = \"add_header\"]";
-    private String xPathTextField = "//*[contains(@class, 'ok-posting-handler')]";
-    private String xPathHeadField = "//*[@data-id = 'adHeader']";
-    private String xPathSendButton = "//*[@data-l = 't,button.submit']";
+    private final String xPathOptionButton = "//*[@class = \"posting_itx_ac_menu\"]";
+    private final String xPathAddHeadButton = "//*[@data-action = \"add_header\"]";
+    private final String xPathTextField = "//*[contains(@class, 'ok-posting-handler')]";
+    private final String xPathHeadField = "//*[@data-id = 'adHeader']";
+    private final String xPathSendButton = "//*[@data-l = 't,button.submit']";
 
 
     public Note(String head, String text){
@@ -27,8 +27,8 @@ public class Note {
         this.text= text;
     }
 
-    public void sendNote(){
-        if (head !=null){
+    public void createNote() {
+        if (head != null) {
             $(By.xpath(xPathOptionButton)).click();
             $(By.xpath(xPathAddHeadButton)).click();
             $(By.xpath(xPathHeadField)).setValue(head);
@@ -41,6 +41,4 @@ public class Note {
         $(By.xpath(xPathSendButton)).shouldBe(Condition.visible.because("Button send not displayed")).click();
         $(By.xpath(xPathTextField)).shouldNot(Condition.visible.because("Not exit window note"));
     }
-
-
 }

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class LoginPage extends BasePage{
     private String xPathLogin ="st.email";
     private String xPathPassword = "st.password";
-    private String xPathButton = "//*[@class='button-pro __wide']";
+    private String xPathButton = "//*[@data-l='t,sign_in']";
     private String xPathLoginError = "//*[@class = 'input-e login_error']";
 
     public LoginPage(){
