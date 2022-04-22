@@ -43,7 +43,7 @@ public class TestNote {
         assertAll("Should return not null note",
                     ()->assertTrue(checkNote.isPresent(),"Не удалось найти пост!"),
                     ()-> assertEquals(checkText, checkNote.get().getTextNote(),
-                            "Текст не совпадает с отправленным через тест!"));
+                            "Текст не совпадает с отправленным"));
 
     }
 

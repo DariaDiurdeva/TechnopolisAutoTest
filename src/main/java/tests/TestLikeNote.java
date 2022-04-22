@@ -33,11 +33,11 @@ public class TestLikeNote {
         ArrayList<NoteWrapper> notes = mainPage.getFeedList();
         NoteWrapper note = notes.get(0);
         note.setLike();
-        assertTrue(note.isLike(),"like not exist");
+        assertTrue(note.isLike(),"Лайк уже стоит");
 
         //удалить лайк
         note.deleteLike();
-        assertFalse(note.isLike(),"Like already not exist");
+        assertFalse(note.isLike(),"Лайк уже убран");
     }
 
     @AfterAll
