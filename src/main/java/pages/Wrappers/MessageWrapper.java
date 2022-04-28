@@ -5,16 +5,14 @@ import org.openqa.selenium.By;
 
 public class MessageWrapper {
     private SelenideElement message;
-    private final String xPathMessageText = ".//msg-parsed-text";
-    private final String xPathMessageTime = ".//msg-time";
+    private By messageText = By.xpath(".//msg-parsed-text");
     //Добавить кнопки перслать и тд
-
 
     public MessageWrapper(SelenideElement message){
         this.message = message;
     }
 
     public String getMessageText(){
-       return  message.$(By.xpath(xPathMessageText)).getText();
+       return  message.$(messageText).getText();
     }
 }

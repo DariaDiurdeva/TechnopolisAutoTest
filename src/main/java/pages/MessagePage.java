@@ -7,39 +7,42 @@ import org.openqa.selenium.By;
 
 public class MessagePage extends BasePage{
 
-    private final String lineForSearch = "//input[@name='chat-search']";
-    private final String lineInputMessage = "//msg-input";
-    private final String sendButton = "//*[@data-l=\"t,sendButton\"]//*[@icon=\"send\"]";
-    private final String lastReceivedMessage ="//*[@class=\"group\"][last()]//msg-message[not(@mine)][last()]";
-    private final String lastMyMessage = "//*[@class=\"group\"][last()]//msg-message[@mine][last()]";
+    private By button = By.xpath("//*[@data-l=\"t,sendButton\"]//*[@icon=\"send\"]");
+    private By lineForSearch = By.xpath("//input[@name='chat-search']");
+    private By lineInputMessage = By.xpath("//msg-input");
+    private By lastReceivedMessage = By.xpath("//*[@class=\"group\"][last()]//msg-message[not(@mine)][last()]");
+    private By lastMyMessage = By.xpath("//*[@class=\"group\"][last()]//msg-message[@mine][last()]");
+
+    private String loadError = "Search fields not displayed";
 
     public MessagePage(){
         isLoaded();
     }
 
     public MessagePage openDialog(Long id){
-        $(By.xpath("//msg-chats-list-item//*[@id='" + id + "']")).click();
+        String xPathDialog = "//msg-chats-list-item//*[@id= '"+id+"']";
+        $(By.xpath(xPathDialog)).click();
         return this;
     }
 
     public MessagePage sendMessage(String text){
-        $(By.xpath(lineInputMessage)).setValue(text);
-        $(By.xpath(sendButton)).click();
+        $(lineInputMessage).setValue(text);
+        $(button).click();
         return this;
     }
 
     public MessageWrapper getLastReceivedMessage(){
-        MessageWrapper message = new MessageWrapper($(By.xpath(lastReceivedMessage)));
+        MessageWrapper message = new MessageWrapper($(lastReceivedMessage));
         return message;
     }
 
     public MessageWrapper getLastMyMessage(){
-        MessageWrapper message = new MessageWrapper($(By.xpath(lastMyMessage)));
+        MessageWrapper message = new MessageWrapper($(lastMyMessage));
         return message;
     }
 
     @Override
     public void isLoaded() {
-        $(By.xpath(lineForSearch)).shouldBe(Condition.visible.because("Search fields not displayed"));
+        $(lineForSearch).shouldBe(Condition.visible.because(loadError));
     }
 }

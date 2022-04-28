@@ -5,5 +5,5 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
-@SelectClasses({TestNote.class,TestLikeNote.class})
+@SelectClasses({SendNoteTest.class, LikeNoteTest.class})
 public class AllTestNote {}
